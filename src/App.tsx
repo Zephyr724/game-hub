@@ -17,15 +17,9 @@ function App() {
       <GridItem area="nav">
         <NavBar />
       </GridItem>
-      {showAside && (
-        <GridItem area="aside" bg="gold">
-          Aside
-        </GridItem>
-      )}
+      {showAside && <GridItem area="aside">Aside</GridItem>}
 
-      <GridItem area="main" bg="dodgerblue">
-        Main
-      </GridItem>
+      <GridItem area="main">Main</GridItem>
     </Grid>
   );
 }
