@@ -4,9 +4,9 @@ const GameCardSkeleton = () => {
   return (
     <Card.Root>
       <Skeleton height="200px" />
-      <CardBody>
+      <Card.Body>
         <SkeletonText />
-      </CardBody>
+      </Card.Body>
     </Card.Root>
   );
 };
