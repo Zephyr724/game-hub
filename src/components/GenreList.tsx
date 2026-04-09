@@ -1,23 +1,29 @@
-import { Box, HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+import { Box, HStack, Image, List, Spinner, Text } from "@chakra-ui/react";
 import useGenres from "./hooks/useGenres";
 import getCroppedImage from "@/services/image-url";
+import GenreListItemSkeloton from "./GenreListSkeleton";
+import GenreListItem from "./GenreListItem";
+import GenreListItemContainer from "./GenreListItemContainer";
 
 const GenreList = () => {
   const { data, error, isLoading } = useGenres();
+  const skeletons = Array.from({ length: 15 }, (_, i) => i + 1);
+
+  if (error) return null;
+  // if (isLoading) return <Spinner />;
 
   return (
     <List.Root>
+      {isLoading &&
+        skeletons.map((skeleton) => (
+          <GenreListItemContainer>
+            <GenreListItemSkeloton key={skeleton} />
+          </GenreListItemContainer>
+        ))}
       {data.map((genre) => (
-        <Box key={genre.id} paddingY="5px">
-          <HStack>
-            <Image
-              src={getCroppedImage(genre.image_background)}
-              boxSize="32px"
-              borderRadius="8px"
-            />
-            <Text fontSize="lg"> {genre.name}</Text>
-          </HStack>
-        </Box>
+        <GenreListItemContainer>
+          <GenreListItem genre={genre} key={genre.id} />
+        </GenreListItemContainer>
       ))}
     </List.Root>
   );
