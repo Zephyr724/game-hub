@@ -3,6 +3,7 @@ import React from "react";
 import type { Game } from "./hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
+import getCroppedImage from "@/services/image-url";
 
 interface Props {
   game: Game;
@@ -11,7 +12,7 @@ interface Props {
 function GameCard({ game }: Props) {
   return (
     <Card.Root borderRadius={10} overflow="hidden">
-      <Image src={game.background_image}></Image>
+      <Image src={getCroppedImage(game.background_image)}></Image>
 
       <Card.Body>
         <Heading fontSize="2xl">{game.name}</Heading>
