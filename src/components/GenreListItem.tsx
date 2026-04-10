@@ -1,12 +1,18 @@
-import { Box, HStack, Image, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Image, Text } from "@chakra-ui/react";
 import type { Genre } from "./hooks/useGenres";
 import getCroppedImage from "@/services/image-url";
 
 interface Props {
   genre: Genre;
+  onClick: (argument: Genre) => void;
 }
 
-const GenreListItem = ({ genre }: Props) => {
+const GenreListItem = ({ genre, onClick }: Props) => {
+  const handleClick = (genre: Genre) => {
+    console.log("level 3", genre.slug);
+    onClick(genre);
+  };
+
   return (
     <Box key={genre.id}>
       <HStack>
@@ -15,7 +21,16 @@ const GenreListItem = ({ genre }: Props) => {
           boxSize="32px"
           borderRadius="8px"
         />
-        <Text fontSize="lg"> {genre.name}</Text>
+        <Button
+          fontSize="lg"
+          variant="plain"
+          _hover={{ textDecoration: "underline" }}
+          justifyContent="left"
+          paddingLeft={0}
+          onClick={() => handleClick(genre)}
+        >
+          {genre.name}
+        </Button>
       </HStack>
     </Box>
   );
