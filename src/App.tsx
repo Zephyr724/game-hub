@@ -11,12 +11,7 @@ function App() {
     lg: true,
   });
 
-  const [selectedGenre, setGenre] = useState("");
-
-  const getGenre = (genre: Genre) => {
-    console.log("level 1", genre.slug);
-    setGenre(genre.slug);
-  };
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
   return (
     <Grid
@@ -34,12 +29,12 @@ function App() {
       </GridItem>
       {showAside && (
         <GridItem area="aside" paddingX={5}>
-          <GenreList onClick={(genre) => getGenre(genre)} />
+          <GenreList onSelectedGenre={(genre) => setSelectedGenre(genre)} />
         </GridItem>
       )}
 
       <GridItem area="main">
-        <GameGrid genreSlug={selectedGenre} />
+        <GameGrid selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
   );

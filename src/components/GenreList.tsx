@@ -6,20 +6,15 @@ import GenreListItem from "./GenreListItem";
 import GenreListItemContainer from "./GenreListItemContainer";
 
 interface Props {
-  onClick: (argument: Genre) => void;
+  onSelectedGenre: (genre: Genre) => void;
 }
 
-const GenreList = ({ onClick }: Props) => {
+const GenreList = ({ onSelectedGenre }: Props) => {
   const { data, error, isLoading } = useGenres();
   const skeletons = Array.from({ length: 15 }, (_, i) => i + 1);
 
   if (error) return null;
   // if (isLoading) return <Spinner />;
-
-  const handleClick = (genre: Genre) => {
-    console.log("level 2", genre.slug);
-    onClick(genre);
-  };
 
   return (
     <List.Root>
@@ -33,7 +28,7 @@ const GenreList = ({ onClick }: Props) => {
         <GenreListItemContainer key={genre.id}>
           <GenreListItem
             genre={genre}
-            onClick={(genre) => handleClick(genre)}
+            onSelectedGenre={(genre) => onSelectedGenre(genre)}
           />
         </GenreListItemContainer>
       ))}

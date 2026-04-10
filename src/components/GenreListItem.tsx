@@ -4,15 +4,10 @@ import getCroppedImage from "@/services/image-url";
 
 interface Props {
   genre: Genre;
-  onClick: (argument: Genre) => void;
+  onSelectedGenre: (genre: Genre) => void;
 }
 
-const GenreListItem = ({ genre, onClick }: Props) => {
-  const handleClick = (genre: Genre) => {
-    console.log("level 3", genre.slug);
-    onClick(genre);
-  };
-
+const GenreListItem = ({ genre, onSelectedGenre }: Props) => {
   return (
     <Box key={genre.id}>
       <HStack>
@@ -27,7 +22,7 @@ const GenreListItem = ({ genre, onClick }: Props) => {
           _hover={{ textDecoration: "underline" }}
           justifyContent="left"
           paddingLeft={0}
-          onClick={() => handleClick(genre)}
+          onClick={() => onSelectedGenre(genre)}
         >
           {genre.name}
         </Button>
