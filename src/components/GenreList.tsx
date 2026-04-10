@@ -7,9 +7,10 @@ import GenreListItemContainer from "./GenreListItemContainer";
 
 interface Props {
   onSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectedGenre }: Props) => {
+const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
   const { data, error, isLoading } = useGenres();
   const skeletons = Array.from({ length: 15 }, (_, i) => i + 1);
 
@@ -29,6 +30,7 @@ const GenreList = ({ onSelectedGenre }: Props) => {
           <GenreListItem
             genre={genre}
             onSelectedGenre={(genre) => onSelectedGenre(genre)}
+            selectedGenre={selectedGenre}
           />
         </GenreListItemContainer>
       ))}
