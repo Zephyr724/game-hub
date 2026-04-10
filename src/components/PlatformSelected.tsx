@@ -10,6 +10,8 @@ interface Props {
 const PlatformSelected = ({ setSelectPlatform }: Props) => {
   const { data, error, isLoading } = usePlatform();
 
+  if (error) return null;
+
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
