@@ -4,10 +4,11 @@ import usePlatform from "./hooks/usePlatform";
 import type { Platform } from "./hooks/usePlatform";
 
 interface Props {
-  setSelectPlatform: (platform: Platform) => void;
+  setSelectedPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
 }
 
-const PlatformSelected = ({ setSelectPlatform }: Props) => {
+const PlatformSelected = ({ setSelectedPlatform, selectedPlatform }: Props) => {
   const { data, error, isLoading } = usePlatform();
 
   if (error) return null;
@@ -16,7 +17,7 @@ const PlatformSelected = ({ setSelectPlatform }: Props) => {
     <Menu.Root>
       <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
-          Platform
+          {selectedPlatform?.name || "Platform"}
           <BsChevronBarDown />
         </Button>
       </Menu.Trigger>
@@ -27,7 +28,7 @@ const PlatformSelected = ({ setSelectPlatform }: Props) => {
               <Menu.Item
                 key={platform.id}
                 value="slug"
-                onClick={() => setSelectPlatform(platform)}
+                onClick={() => setSelectedPlatform(platform)}
               >
                 {platform.name}
               </Menu.Item>
