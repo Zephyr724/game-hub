@@ -1,4 +1,10 @@
-import { Grid, GridItem, HStack, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Flex,
+  Grid,
+  GridItem,
+  HStack,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
@@ -46,7 +52,7 @@ function App() {
         </GridItem>
       )}
       <GridItem area="main">
-        <HStack gapX={5} paddingLeft={4} marginBottom={5}>
+        <Flex gapX={5} paddingLeft={4} marginBottom={5}>
           <PlatformSelector
             setSelectedPlatform={(platform) =>
               setGameQuery({ ...gameQuery, platform })
@@ -59,7 +65,7 @@ function App() {
             }
             sortOrder={gameQuery.sortOrder}
           />
-        </HStack>
+        </Flex>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
