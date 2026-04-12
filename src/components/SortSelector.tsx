@@ -1,7 +1,6 @@
 import { Button, Portal } from "@chakra-ui/react";
 import { Menu } from "@chakra-ui/react/menu";
 import { BsChevronBarDown } from "react-icons/bs";
-import type { Ordering } from "./hooks/useGames";
 
 interface Props {
   onSelectSortOrder: (sortOrder: string) => void;

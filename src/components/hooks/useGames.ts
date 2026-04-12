@@ -11,16 +11,6 @@ export interface Game {
   metacritic: number;
   genres: Genre[];
   dates: Date;
-  ordering: Ordering;
-}
-
-export interface Ordering {
-  name: string;
-  released: Date;
-  added: Date;
-  created: Date;
-  ratring: number;
-  metacritic: number;
 }
 
 const useGames = (gameQuery: GameQuery) => {
@@ -30,7 +20,8 @@ const useGames = (gameQuery: GameQuery) => {
       params: {
         genres: gameQuery.genre?.id,
         platforms: gameQuery.platform?.id,
-        ordering:gameQuery.sortOrder
+        ordering: gameQuery.sortOrder,
+        search: gameQuery.searchText,
       },
     },
     [gameQuery],
