@@ -7,7 +7,7 @@ interface Props {
   onSelectedGenre: (genre: Genre) => void;
   selectedGenre: Genre | null;
 }
-
+ 
 const GenreListItem = ({ genre, onSelectedGenre, selectedGenre }: Props) => {
   return (
     <Box key={genre.id}>
