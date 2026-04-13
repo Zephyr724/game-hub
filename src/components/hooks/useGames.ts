@@ -11,6 +11,7 @@ export interface Game {
   metacritic: number;
   genres: Genre[];
   dates: Date;
+  rating_top:number;
 }
 
 const useGames = (gameQuery: GameQuery) => {
