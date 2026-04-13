@@ -1,4 +1,12 @@
-import { Box, HStack, Image, List, Spinner, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  HStack,
+  Image,
+  List,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import useGenres, { type Genre } from "./hooks/useGenres";
 import getCroppedImage from "@/services/image-url";
 import GenreListItemSkeloton from "./GenreListSkeleton";
@@ -18,23 +26,28 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
   // if (isLoading) return <Spinner />;
 
   return (
-    <List.Root>
-      {isLoading &&
-        skeletons.map((skeleton) => (
-          <GenreListItemContainer key={skeleton}>
-            <GenreListItemSkeloton />
+    <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
+      <List.Root>
+        {isLoading &&
+          skeletons.map((skeleton) => (
+            <GenreListItemContainer key={skeleton}>
+              <GenreListItemSkeloton />
+            </GenreListItemContainer>
+          ))}
+        {data.map((genre) => (
+          <GenreListItemContainer key={genre.id}>
+            <GenreListItem
+              genre={genre}
+              onSelectedGenre={(genre) => onSelectedGenre(genre)}
+              selectedGenre={selectedGenre}
+            />
           </GenreListItemContainer>
         ))}
-      {data.map((genre) => (
-        <GenreListItemContainer key={genre.id}>
-          <GenreListItem
-            genre={genre}
-            onSelectedGenre={(genre) => onSelectedGenre(genre)}
-            selectedGenre={selectedGenre}
-          />
-        </GenreListItemContainer>
-      ))}
-    </List.Root>
+      </List.Root>
+    </>
   );
 };
 
