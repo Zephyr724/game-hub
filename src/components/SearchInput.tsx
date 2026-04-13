@@ -1,5 +1,5 @@
 import { Input, InputElement, InputGroup } from "@chakra-ui/react";
-import { useRef, type MouseEventHandler } from "react";
+import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 
 interface Props {
